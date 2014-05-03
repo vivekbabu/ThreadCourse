@@ -17,7 +17,6 @@ class Runner implements Runnable {
 		try {
 			Thread.sleep(5000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.out.println(id + " Completed");
@@ -41,7 +40,6 @@ public class App {
 		try {
 			executorService.awaitTermination(1, TimeUnit.DAYS);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.out.println("All Tasks Completed");
