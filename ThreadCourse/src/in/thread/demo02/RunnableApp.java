@@ -1,4 +1,4 @@
-package in.thread.demo2;
+package in.thread.demo02;
 
 class Runner implements Runnable {
 	@Override

@@ -1,38 +1,33 @@
-package in.thread.demo7;
+package in.thread.demo06;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MultipleObjectSynchronization {
+public class SynchronizedObject {
 	private List<Double> list1 = new ArrayList<Double>();
 	private List<Double> list2 = new ArrayList<Double>();
 	private Object lock1 = new Object();
 	private Object lock2 = new Object();
 
-	public void stageOne() {
-		synchronized (lock1) {
-			try {
-				Thread.sleep(1);
-				list1.add(Math.random());
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+	public synchronized void stageOne() {
+		try {
+			Thread.sleep(1);
+			list1.add(Math.random());
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 
-			}
 		}
 
 	}
 
-	public void stageTwo() {
-		synchronized (lock2) {
-			try {
-				Thread.sleep(1);
-				list2.add(Math.random());
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+	public synchronized void stageTwo() {
+		try {
+			Thread.sleep(1);
+			list2.add(Math.random());
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 
-			}
 		}
-
 	}
 
 	public void process() {
@@ -44,7 +39,7 @@ public class MultipleObjectSynchronization {
 	}
 
 	public static void main(String[] args) {
-		new MultipleObjectSynchronization().startProcessing();
+		new SynchronizedObject().startProcessing();
 	}
 
 	private void startProcessing() {

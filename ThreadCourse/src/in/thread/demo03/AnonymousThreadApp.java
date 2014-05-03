@@ -1,4 +1,4 @@
-package in.thread.demo3;
+package in.thread.demo03;
 
 public class AnonymousThreadApp {
 	public static void main(String[] args) {

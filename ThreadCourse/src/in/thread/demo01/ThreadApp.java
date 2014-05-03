@@ -1,4 +1,4 @@
-package in.thread.demo1;
+package in.thread.demo01;
 
 
 class Runner extends Thread {

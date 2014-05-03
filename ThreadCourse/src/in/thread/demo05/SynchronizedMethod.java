@@ -1,4 +1,4 @@
-package in.thread.demo5;
+package in.thread.demo05;
 
 public class SynchronizedMethod {
 	private int count = 0;

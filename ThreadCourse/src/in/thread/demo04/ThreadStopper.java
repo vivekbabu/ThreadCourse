@@ -1,4 +1,4 @@
-package in.thread.demo4;
+package in.thread.demo04;
 
 import java.util.Scanner;
 
