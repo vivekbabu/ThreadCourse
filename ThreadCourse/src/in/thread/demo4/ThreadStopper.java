@@ -24,7 +24,7 @@ class Runner extends Thread {
 
 }
 
-public class App {
+public class ThreadStopper {
 
 	@SuppressWarnings("resource")
 	public static void main(String[] args) {

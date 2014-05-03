@@ -24,9 +24,9 @@ class Runner implements Runnable {
 
 }
 
-public class App {
+public class ThreadPool {
 	public static void main(String[] args) {
-		new App().runTheApp();
+		new ThreadPool().runTheApp();
 	}
 
 	private void runTheApp() {

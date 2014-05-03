@@ -1,6 +1,6 @@
 package in.thread.demo5;
 
-public class App {
+public class SynchronizedMethod {
 	private int count = 0;
 
 	public synchronized void increment() {
@@ -8,7 +8,7 @@ public class App {
 	}
 
 	public static void main(String[] args) {
-		new App().doWork();
+		new SynchronizedMethod().doWork();
 	}
 
 	private void doWork() {

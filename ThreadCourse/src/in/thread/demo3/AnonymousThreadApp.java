@@ -1,6 +1,6 @@
 package in.thread.demo3;
 
-public class App {
+public class AnonymousThreadApp {
 	public static void main(String[] args) {
 		Thread t = new Thread() {
 			@Override
@@ -10,7 +10,6 @@ public class App {
 					try {
 						Thread.sleep(1000);
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
