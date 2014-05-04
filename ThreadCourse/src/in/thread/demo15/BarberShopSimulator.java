@@ -1,6 +1,5 @@
 package in.thread.demo15;
 
-import java.util.Iterator;
 import java.util.Random;
 import java.util.concurrent.Semaphore;
 
