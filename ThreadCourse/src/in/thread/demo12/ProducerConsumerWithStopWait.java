@@ -1,0 +1,89 @@
+package in.thread.demo12;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+class Runner {
+	private List<Integer> integers = new ArrayList<Integer>();
+	private int count = 0;
+	private int MAX_COUNT = 10;
+
+	public void produce() throws InterruptedException {
+		while (true) {
+			synchronized (this) {
+				while (integers.size() == MAX_COUNT)
+					wait();
+				integers.add(count++);
+				System.out.println(count-1 + " added.Size is now "
+						+ integers.size());
+				
+				notify();
+			}
+			Thread.sleep(new Random().nextInt(3) * 1000);
+
+		}
+	}
+
+	public void consume() throws InterruptedException {
+		while (true) {
+			synchronized (this) {
+				while (integers.isEmpty())
+					wait();
+				System.out.println(integers.remove(0) + " removed.Size is now "
+						+ integers.size());
+				notify();
+			}
+			Thread.sleep(new Random().nextInt(3) * 1000);
+		}
+	}
+
+}
+
+public class ProducerConsumerWithStopWait {
+	public static void main(String[] args) {
+		new ProducerConsumerWithStopWait().runApp();
+	}
+
+	private void runApp() {
+		final Runner runner = new Runner();
+		Thread t1 = new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				try {
+					runner.produce();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+
+		Thread t2 = new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				try {
+					runner.consume();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
+		t1.start();
+		t2.start();
+		
+		
+		try {
+			t1.join();
+			t2.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		
+		System.out.println("Program done sir");
+
+	}
+}
