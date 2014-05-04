@@ -12,13 +12,16 @@ class Runner {
 	public void produce() throws InterruptedException {
 		while (true) {
 			synchronized (this) {
-				while (integers.size() == MAX_COUNT)
+				if (integers.size() == MAX_COUNT)
 					wait();
-				integers.add(count++);
-				System.out.println(count-1 + " added.Size is now "
-						+ integers.size());
-				
-				notify();
+				else {
+					integers.add(count++);
+					System.out.println(count - 1 + " added.Size is now "
+							+ integers.size());
+
+					notifyAll();
+				}
+
 			}
 			Thread.sleep(new Random().nextInt(3) * 1000);
 
@@ -28,11 +31,14 @@ class Runner {
 	public void consume() throws InterruptedException {
 		while (true) {
 			synchronized (this) {
-				while (integers.isEmpty())
+				if (integers.isEmpty())
 					wait();
-				System.out.println(integers.remove(0) + " removed.Size is now "
-						+ integers.size());
-				notify();
+				else {
+					System.out.println(integers.remove(0)
+							+ " removed.Size is now " + integers.size());
+					notifyAll();
+				}
+
 			}
 			Thread.sleep(new Random().nextInt(3) * 1000);
 		}
@@ -71,19 +77,22 @@ public class ProducerConsumerWithStopWait {
 			}
 		});
 		
+		Thread t3 = new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				try {
+					runner.consume();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+
 		t1.start();
 		t2.start();
+		t3.start();
 		
-		
-		try {
-			t1.join();
-			t2.join();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
-		
-		System.out.println("Program done sir");
 
 	}
 }
