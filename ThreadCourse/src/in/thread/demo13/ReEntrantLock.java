@@ -30,6 +30,7 @@ class Runner {
 
 	}
 
+	@SuppressWarnings("resource")
 	public void secondThread() throws InterruptedException {
 		Thread.sleep(2000);
 		lock.lock();

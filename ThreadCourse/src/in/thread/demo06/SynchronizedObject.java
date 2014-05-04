@@ -6,8 +6,6 @@ import java.util.List;
 public class SynchronizedObject {
 	private List<Double> list1 = new ArrayList<Double>();
 	private List<Double> list2 = new ArrayList<Double>();
-	private Object lock1 = new Object();
-	private Object lock2 = new Object();
 
 	public synchronized void stageOne() {
 		try {
