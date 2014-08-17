@@ -32,6 +32,7 @@ public class ThreadPool {
 	private void runTheApp() {
 		ExecutorService executorService = Executors.newFixedThreadPool(2);
 		for (int i = 0; i < 5; i++) {
+			System.out.println(i + " submitted");
 			executorService.submit(new Runner(i));
 		}
 		System.out.println("All Tasks Submitted");

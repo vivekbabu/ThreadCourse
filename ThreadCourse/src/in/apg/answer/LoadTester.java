@@ -43,7 +43,6 @@ public class LoadTester {
 			MAX_THREADS);
 	private static final CountDownLatch releaserLatch = new CountDownLatch(
 			MAX_THREADS);
-	private static final AtomicInteger count = new AtomicInteger(0);
 
 	public static void main(String[] args) throws InterruptedException {
 		for (int i = 0; i < MAX_THREADS; i++) {
